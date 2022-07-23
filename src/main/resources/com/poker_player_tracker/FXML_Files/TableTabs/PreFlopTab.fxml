@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
+          fx:controller="com.poker_player_tracker.view_controllers.table_controllers.PreFlopTabController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <TableView fx:id="preFlopTable">
+        <columns>
+            <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name"/>
+            <TableColumn fx:id="handsPlayed" prefWidth="75.0" text="Hands"/>
+            <TableColumn fx:id="bigBlind" prefWidth="75.0" text="BB Raise%"/>
+            <TableColumn fx:id="smallBlind" prefWidth="75.0" text="SB Raise%"/>
+            <TableColumn fx:id="button" prefWidth="75.0" text="BTN Raise%"/>
+            <TableColumn fx:id="raise" prefWidth="75.0" text="Raise%"/>
+            <TableColumn fx:id="reRaise" prefWidth="75.0" text="ReRaise%"/>
+            <TableColumn fx:id="threeBet" prefWidth="75.0" text="3 Bet%"/>
+            <TableColumn fx:id="all_in" prefWidth="75.0" text="All In%"/>
+        </columns>
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        </padding>
+    </TableView>
+</GridPane>

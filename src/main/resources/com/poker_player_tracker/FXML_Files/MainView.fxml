@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="BorderPane" minHeight="400.0" minWidth="750.0" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.poker_player_tracker.view_controllers.MainController">
+    <top>
+        <MenuBar fx:id="MenuBar" BorderPane.alignment="CENTER">
+            <fx:include source="MenuBar/MenuFile.fxml" />
+            <fx:include source="MenuBar/MenuView.fxml" />
+        </MenuBar>
+    </top>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="NEVER">
+                <opaqueInsets>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                </opaqueInsets>
+                <VBox.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </VBox.margin>
+                <Label fx:id="notLocatedLabel" text="No player located with that user name. please try again " textFill="#db0909" visible="false">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="playerTextField" onAction="#onSearchButtonClick" promptText="Players Name" />
+                <Button fx:id="searchButton" onAction="#onSearchButtonClick" text="_Search">
+                    <HBox.margin>
+                        <Insets right="5.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="clearButton" layoutX="683.0" layoutY="35.0" mnemonicParsing="false" onAction="#onClearButtonClick" text="Clear" />
+            </HBox>
+            <TabPane prefHeight="330.0" prefWidth="550.0" VBox.vgrow="ALWAYS">
+
+                <Tab closable="false" text="Player Totals">
+                    <fx:include source="TableTabs/PlayerTotalsTab.fxml" />
+                </Tab>
+
+                <Tab closable="false" text="Pre Flop Stats">
+                    <fx:include source="TableTabs/PreFlopTab.fxml" />
+                </Tab>
+
+                <Tab closable="false" text="Post Flop Stats">
+                    <fx:include source="TableTabs/PostFlopTab.fxml" />
+                </Tab>
+
+                <Tab closable="false" text="Winning Stats">
+                    <fx:include source="TableTabs/WinningTab.fxml" />
+                </Tab>
+            </TabPane>
+        </VBox>
+    </center>
+</BorderPane>

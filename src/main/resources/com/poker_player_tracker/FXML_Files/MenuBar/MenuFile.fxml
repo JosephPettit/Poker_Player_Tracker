@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<Menu xmlns="http://javafx.com/javafx/11.0.14-internal"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.poker_player_tracker.view_controllers.menu_controllers.MenuFileController"
+      text="_File">
+    <Menu text="_Process Files">
+        <MenuItem fx:id="singleFileProcess" onAction="#processOneFile"
+                  text="One File"/>
+
+        <MenuItem fx:id="mulFilesProcess" onAction="#processMulFile"
+                  text="Multiple Files"/>
+
+        <MenuItem fx:id="folderProcess" onAction="#processFolder"
+                  text="Folder / Directory"/>
+
+    </Menu>
+    <MenuItem mnemonicParsing="false" text="Close" onAction="#closeApplication"/>
+</Menu>

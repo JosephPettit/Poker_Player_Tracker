@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Poker_Player_Tracker">
+    <output-path>$PROJECT_DIR$/out/artifacts/Poker_Player_Tracker</output-path>
+    <root id="archive" name="Poker_Player_Tracker.jar">
+      <element id="archive" name="Poker_Player_Tracker.jar">
+        <element id="module-output" name="Poker_Player_Tracker" />
+      </element>
+    </root>
+  </artifact>
+</component>

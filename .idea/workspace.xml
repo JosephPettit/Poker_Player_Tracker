@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a5920b4c-5a8a-4778-9136-3f3d59a59aff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/Launcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/DataManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/game_file_history/FolderPath.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/game_file_history/GameFileData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/game_file_history/GameFileLogManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/player_data/PlayerData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/player_data/PlayerDisplayData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/player_history/PlayerDataHistory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/player_history/PlayerDisplayHistory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/player_history/PlayerHistoryTemplate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/player_history/PlayerLocationData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/player_history/PlayerLocationLogManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/processor/GameFileKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/processor/GameProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/processor/NameParseKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/menu_controllers/MenuFileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/menu_controllers/MenuViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/table_controllers/PlayerTotalsTabController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/table_controllers/PostFlopTabController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/table_controllers/PreFlopTabController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/table_controllers/WinningTabController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/MainView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/MenuBar/MenuFile.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/MenuBar/MenuView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/TableTabs/PlayerTotalsTab.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/TableTabs/PostFlopTab.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/TableTabs/PreFlopTab.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/TableTabs/WinningTab.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Joe/Desktop/Poker_Player_Tracker/src/main/resources/com/poker_player_tracker/FXML_Files",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.36666667"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Joe\Desktop\Poker_Player_Tracker\src\main\resources\com\poker_player_tracker\FXML_Files" />
+      <recent name="C:\Users\Joe\Desktop\Poker_Player_Tracker\src\main\resources\com\poker_player_tracker\FXML_Files\" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Joe\Desktop\Poker_Player_Tracker\src\main\resources\com\poker_player_tracker\FXML_Files" />
+      <recent name="C:\Users\Joe\Desktop\Poker_Player_Tracker\src\main\resources\com\poker_player_tracker\" />
+      <recent name="C:\Users\Joe\Desktop\Poker_Player_Tracker\src\main\resources\com\poker_player_tracker" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Launcher">
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.poker_player_tracker.Launcher" />
+      <module name="Poker_Player_Tracker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.poker_player_tracker.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.poker_player_tracker.Main" />
+      <module name="Poker_Player_Tracker" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.poker_player_tracker.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a5920b4c-5a8a-4778-9136-3f3d59a59aff" name="Changes" comment="" />
+      <created>1658549993179</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1658549993179</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
