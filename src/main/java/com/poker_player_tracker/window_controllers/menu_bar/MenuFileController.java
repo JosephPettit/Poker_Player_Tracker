@@ -1,9 +1,12 @@
-package com.poker_player_tracker.view_controllers.menu_controllers;
+package com.poker_player_tracker.window_controllers.menu_bar;
 
 import com.poker_player_tracker.data_IO.DataManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -12,27 +15,32 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
 import java.util.*;
 
-public class MenuFileController implements Initializable {
+
+
+public class MenuFileController {
 
     @FXML
-    public MenuItem folderProcess;
+    private MenuItem folderProcess;
     @FXML
-    public MenuItem mulFilesProcess;
+    private MenuItem mulFilesProcess;
     @FXML
-    public MenuItem singleFileProcess;
+    private MenuItem singleFileProcess;
 
-    public void processOneFile(ActionEvent event) {
+
+    public void processOneFile(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Upload Game File");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PokerHistory File (.txt)", "*.txt"));
 
         File file = fileChooser.showOpenDialog(new Stage());
+        actionUploadWindow(event);
         if (file != null) {
             fileChooser.setInitialDirectory(file.getParentFile()); // saves the directory for next time.
             gameFileToProcess(file);
@@ -82,6 +90,21 @@ public class MenuFileController implements Initializable {
     }
 
     @FXML
+    private void actionUploadWindow (ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UploadWindow.fxml"));
+        Parent root = loader.load();
+        UploadWindowController uwc = loader.getController();
+        uwc.setLbFileName();
+
+//        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("UploadWindow.fxml")));
+        Stage stage = new Stage();
+        stage.setTitle("Uploading Files!");
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    @FXML
     private void closeApplication(ActionEvent event) {
         System.exit(0);
     }
@@ -115,10 +138,7 @@ public class MenuFileController implements Initializable {
         alert.showAndWait();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    }
 
 
 }

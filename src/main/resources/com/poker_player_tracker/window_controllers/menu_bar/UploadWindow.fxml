@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.poker_player_tracker.window_controllers.menu_bar.UploadWindowController">
+
+    <Label text="Upload Poker History Files">
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+        <font>
+            <Font size="24.0" />
+        </font>
+    </Label>
+   <Label fx:id="lbFileName" text="Label" visible="false">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+   <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" />
+    <HBox alignment="CENTER" layoutX="10.0" layoutY="165.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+        <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+        </padding>
+        <Button fx:id="btnOkay" layoutX="210.0" layoutY="45.0" mnemonicParsing="false" text="Okay" visible="false">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+    </HBox>
+</VBox>
