@@ -1,4 +1,4 @@
-package com.poker_player_tracker.data_IO.processor;
+package com.poker_player_tracker.data_IO.game_processor;
 
 /**
  * Enum class to hold String values to parse the players userName.

@@ -1,6 +1,7 @@
-package com.poker_player_tracker.data_IO.player_history;
+package com.poker_player_tracker.data_IO.game_file_history;
 
 import com.poker_player_tracker.data_IO.game_file_history.FolderPath;
+import com.poker_player_tracker.data_IO.player_history.PlayerLocationData;
 
 import java.io.*;
 import java.util.HashMap;
