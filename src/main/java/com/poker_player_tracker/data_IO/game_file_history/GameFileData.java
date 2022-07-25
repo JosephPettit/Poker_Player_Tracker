@@ -5,6 +5,9 @@ import com.poker_player_tracker.data_IO.player_data.PlayerData;
 import java.io.Serializable;
 import java.util.HashMap;
 
+/**
+ * Class to hold processed file game data.
+ */
 public class GameFileData implements Serializable {
     private final int gameID;
     private final int startingHand;
@@ -43,6 +46,7 @@ public class GameFileData implements Serializable {
         result = 31 * result + startingHand;
         return result;
     }
+
 
     @Override
     public String toString() {

@@ -1,6 +1,8 @@
 package com.poker_player_tracker.data_IO.player_history;
 
 
+import com.poker_player_tracker.data_IO.RequiredFileAccessDeniedException;
+import com.poker_player_tracker.data_IO.RequiredFileNotFoundException;
 import com.poker_player_tracker.data_IO.game_file_history.FolderPath;
 
 import java.io.File;
@@ -19,9 +21,10 @@ public abstract class PlayerHistoryTemplate {
      * If file does not exist, it will be created.
      *
      * @param path {@code FolderPath} enum type.
-     * @throws IOException SecurityException if access to read or write is denied by a security manager.
+     * @throws RequiredFileAccessDeniedException SecurityException if access to read or write is denied by a security manager.
+     * @throws RequiredFileNotFoundException     Throws if file cannot be read / written too.
      */
-    protected void loadFileData(FolderPath path) throws IOException {
+    protected void loadFileData(FolderPath path) throws RequiredFileNotFoundException {
         this.path = path;
         if (!(new File(path.getFolderPath()).exists()))
             new File(path.getFolderPath()).getParentFile().mkdirs();
@@ -31,6 +34,10 @@ public abstract class PlayerHistoryTemplate {
             }
             totalEntries = file.readInt();
             fileLength = file.length();
+        } catch (SecurityException e) {
+            throw new RequiredFileAccessDeniedException(path.getFolderPath(), e);
+        } catch (IOException e) {
+            throw new RequiredFileNotFoundException(path.getFolderPath(), e);
         }
     }
 

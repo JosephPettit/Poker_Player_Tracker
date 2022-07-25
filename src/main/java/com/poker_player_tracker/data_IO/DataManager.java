@@ -26,12 +26,14 @@ public class DataManager {
      * Loads {@link FolderPath#PLAYER_LOCATION_LOG} from {@link PlayerLocationLogManager}.
      *
      * @return Returns a shallow copy {@code HashMap<String, PlayerLocationData>} from {@code PlayerLocationManager}.
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws RequiredFileAccessDeniedException SecurityException if access to write is denied by a security manager.
+     * @throws RequiredFileNotFoundException     Is thrown if the file is unable to be read, created, or written too.
      */
-    public HashMap<String, PlayerLocationData> getPlayerHistory() throws IOException, ClassNotFoundException {
+    public HashMap<String, PlayerLocationData> getPlayerHistory() throws IOException, RequiredFileAccessDeniedException, ClassNotFoundException {
         locationLog = new PlayerLocationLogManager();
-        return locationLog.getPlayerHistory();
+        if(locationLog.getPlayerHistory() != null)
+            return locationLog.getPlayerHistory();
+        return new HashMap<>();
     }
 
     /**
@@ -39,9 +41,10 @@ public class DataManager {
      *
      * @param playerLocation non-null
      * @return Returns {@code PlayerDisplayDisplay} form .dat file.
-     * @throws IOException
+     * @throws RequiredFileAccessDeniedException SecurityException if access to write is denied by a security manager.
+     * @throws RequiredFileNotFoundException     Is thrown if the file is unable to be read, created, or written too.
      */
-    public PlayerDisplayData getDisplayPlayer(PlayerLocationData playerLocation) throws IOException {
+    public PlayerDisplayData getDisplayPlayer(PlayerLocationData playerLocation) throws RequiredFileAccessDeniedException, RequiredFileNotFoundException {
         playerDisplayHistory = new PlayerDisplayHistory();
         return playerDisplayHistory.readPlayerData(playerLocation);
     }
@@ -59,24 +62,22 @@ public class DataManager {
      * </ol>
      *
      * @param file Game file input from user.
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException Throws exception is gameProcessor fails to read the file.
      */
     public boolean processGameFile(File file) throws IOException, ClassNotFoundException {
         gameData = new GameProcessor().processFile(file);
         gameLog = new GameFileLogManager();
-        if (!gameLog.duplicateLocated(gameData)) {
-            gameLog.addToFileHistory(gameData);
-            gameLog.createGameHistoryFile(gameData);
-            gameLog.writeFile();
-            mergePlayersWithLocLog(gameData);
-            return true;
-        }
-        // TODO: add custom exception for null file;
-        return false;
+        if (gameLog.duplicateLocated(gameData))
+            return false;
+
+        gameLog.addToFileHistory(gameData);
+        gameLog.createGameHistoryFile(gameData);
+        gameLog.writeFile();
+        mergePlayersWithLocLog(gameData);
+        return true;
     }
 
-    private void mergePlayersWithLocLog(GameFileData gameData) throws IOException, ClassNotFoundException {
+    private void mergePlayersWithLocLog(GameFileData gameData) throws IOException, RequiredFileAccessDeniedException, ClassNotFoundException {
         playerHistory = new PlayerDataHistory();
         playerDisplayHistory = new PlayerDisplayHistory();
         locationLog = new PlayerLocationLogManager();

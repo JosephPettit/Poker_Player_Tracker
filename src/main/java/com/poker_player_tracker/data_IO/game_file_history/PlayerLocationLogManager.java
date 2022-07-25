@@ -1,5 +1,6 @@
 package com.poker_player_tracker.data_IO.game_file_history;
 
+import com.poker_player_tracker.data_IO.RequiredFileNotFoundException;
 import com.poker_player_tracker.data_IO.game_file_history.FolderPath;
 import com.poker_player_tracker.data_IO.player_history.PlayerLocationData;
 
@@ -32,25 +33,32 @@ public class PlayerLocationLogManager {
      * <p>
      * If file does not exist, it will be created.
      *
-     * @throws IOException SecurityException if access to write is denied by a security manager.
+     * @throws RequiredFileNotFoundException Throws if unable to read,write or create the file.
      */
-    public void writeFile() throws IOException {
+    public void writeFile() throws RequiredFileNotFoundException {
         File outputFile = new File(FolderPath.PLAYER_LOCATION_LOG.getFolderPath());
         if(!outputFile.exists())
             outputFile.mkdirs();
         try (FileOutputStream fos = new FileOutputStream(outputFile); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(playerHistory);
         }
+        catch(IOException e){
+            throw new RequiredFileNotFoundException(FolderPath.PLAYER_LOCATION_LOG.getFolderPath(), e);
+        }
+
     }
 
     private void readFile() throws IOException, ClassNotFoundException {
         File file = new File(FolderPath.PLAYER_LOCATION_LOG.getFolderPath());
-        // TODO: Clean up and remove if statement - see if there is a better way to handle the file not being located.
         if (!file.exists()) {
             file.getParentFile().mkdirs();
-            file.createNewFile();
-            if (!file.exists()) {
-                throw new IOException("PlayerLocationLog.ser could not be located or created");
+            try {
+                file.createNewFile();
+                if (!file.exists()) {
+                    throw new RequiredFileNotFoundException("PlayerLocationLog.ser could not be located or created");
+                }
+            }catch(IOException e){
+                throw new RequiredFileNotFoundException(FolderPath.PLAYER_LOCATION_LOG.getFolderPath(), e);
             }
         }
         try (FileInputStream fis = new FileInputStream(file);

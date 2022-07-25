@@ -1,5 +1,8 @@
 package com.poker_player_tracker.data_IO.game_file_history;
 
+import com.poker_player_tracker.data_IO.RequiredFileAccessDeniedException;
+import com.poker_player_tracker.data_IO.RequiredFileNotFoundException;
+
 import java.io.*;
 import java.util.HashSet;
 
@@ -10,9 +13,8 @@ public class GameFileLogManager {
     /**
      * Reads {@link FolderPath#GAME_FILE_LOG} upon creation. If file cannot be found / created. New file will be created.
      *
-     * @throws ClassNotFoundException Throws if {@link FolderPath#GAME_FILE_LOG} doesn't contain a {@code HashSet <GameFileData>}.
      */
-    public GameFileLogManager() throws ClassNotFoundException {
+    public GameFileLogManager() {
         this.gameFileHistory = null;
         readFile();
     }
@@ -41,14 +43,18 @@ public class GameFileLogManager {
     /**
      * Writes {@code HashMap<GameFileData>} {@code gameFileHistory} to {@link FolderPath#GAME_FILE_LOG}.
      *
-     * @throws IOException throws exception if {@link FolderPath#GAME_FILE_LOG} is unable to be written too.
+     * @throws RequiredFileNotFoundException throws exception if {@link FolderPath#GAME_FILE_LOG} is unable to be written too.
+     * @throws RequiredFileAccessDeniedException throws exception if access to the file is denied by the System's security manager.
      */
-    public void writeFile() throws IOException {
+    public void writeFile() throws RequiredFileNotFoundException, RequiredFileAccessDeniedException {
         File outputFile = new File(FolderPath.GAME_FILE_LOG.getFolderPath());
-//        if (!outputFile.exists())
-//            outputFile.mkdir();
         try (FileOutputStream fos = new FileOutputStream(outputFile); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(gameFileHistory);
+        }
+        catch(IOException e){
+            throw new RequiredFileNotFoundException(FolderPath.GAME_FILE_LOG.getFolderPath(), e);
+        } catch (SecurityException e) {
+            throw new RequiredFileAccessDeniedException(FolderPath.PLAYER_LOCATION_LOG.getFolderPath(), e);
         }
     }
 
@@ -56,37 +62,32 @@ public class GameFileLogManager {
      * Creates a {@code GameFileData} file at {@link FolderPath#GAME_DATA_DIRECTORY} with the name of {@link GameFileData#getGameID()} .ser
      *
      * @param gameData Processed {@code GameFileData} to be written to file.
-     * @throws IOException Throws if system prevents the file from being written.
+     * @throws RequiredFileNotFoundException If the file is unable to be located or created by the program.
+     * @throws RequiredFileAccessDeniedException throws exception if access to the file is denied by the System's security manager.
      */
-    public void createGameHistoryFile(GameFileData gameData) throws IOException {
+    public void createGameHistoryFile(GameFileData gameData) throws RequiredFileNotFoundException, RequiredFileAccessDeniedException {
         File outputFile = new File(FolderPath.GAME_DATA_DIRECTORY.getFolderPath() + gameData.getGameID() + ".ser");
-        if(!(new File(FolderPath.GAME_DATA_DIRECTORY.getFolderPath()).exists()))
+        if (!(new File(FolderPath.GAME_DATA_DIRECTORY.getFolderPath()).exists()))
             new File(FolderPath.GAME_DATA_DIRECTORY.getFolderPath()).mkdirs();
         try (FileOutputStream fos = new FileOutputStream(outputFile); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(gameData.getGameMap());
+        } catch (IOException e) {
+            throw new RequiredFileNotFoundException(FolderPath.GAME_DATA_DIRECTORY.getFolderPath(), e);
+        } catch (SecurityException e) {
+            throw new RequiredFileAccessDeniedException(FolderPath.PLAYER_LOCATION_LOG.getFolderPath(), e);
         }
-
     }
 
     // TODO: Needs a method to read in Game History Files. *backup plan in case of failure
 
-    private void readFile() throws ClassNotFoundException {
+    private void readFile() {
         File file = new File(FolderPath.GAME_FILE_LOG.getFolderPath());
-
-        //TODO: Find 'better' way to handle when the file cannot be opened or read.
-//        if (!file.exists()) {
-//            file.getParentFile().mkdirs();
-//            file.createNewFile();
-//
-//            if (!file.exists())
-//                throw new IOException(FolderPath.GAME_FILE_LOG.getFolderPath() + " could not be located or created");
-//        }
         try (FileInputStream fis = new FileInputStream(file);
              ObjectInputStream ois = new ObjectInputStream(fis)) {
             if ((gameFileHistory = (HashSet<GameFileData>) ois.readObject()) == null) {
                 gameFileHistory = new HashSet<>();
             }
-        } catch (IOException e) {
+        } catch (ClassNotFoundException | IOException e) {
             gameFileHistory = new HashSet<>();
         }
     }

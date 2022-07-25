@@ -1,6 +1,8 @@
 package com.poker_player_tracker.data_IO.player_history;
 
 
+import com.poker_player_tracker.data_IO.RequiredFileAccessDeniedException;
+import com.poker_player_tracker.data_IO.RequiredFileNotFoundException;
 import com.poker_player_tracker.data_IO.game_file_history.FolderPath;
 import com.poker_player_tracker.data_IO.player_data.PlayerData;
 
@@ -16,9 +18,10 @@ public class PlayerDataHistory extends PlayerHistoryTemplate {
      * If file doesn't exist, it will be created.
      * see {@link PlayerHistoryTemplate#loadFileData(FolderPath) Abstract parent class}
      *
-     * @throws IOException SecurityException if access to read or write is denied by a security manager.
+     * @throws RequiredFileNotFoundException     If the file is unable to be read or written too.
+     * @throws RequiredFileAccessDeniedException SecurityException if access to read or write is denied by a security manager.
      */
-    public PlayerDataHistory() throws IOException {
+    public PlayerDataHistory() throws RequiredFileNotFoundException {
         loadFileData(FolderPath.RAW_PLAYER_DATA);
     }
 
@@ -29,9 +32,10 @@ public class PlayerDataHistory extends PlayerHistoryTemplate {
      *
      * @param player         Player data to be written.
      * @param playerLocation Previously written location for player, values will be overwritten by new values.
-     * @throws IOException Throws if file cannot be read / written too.
+     * @throws RequiredFileAccessDeniedException SecurityException if access to read or write is denied by a security manager.
+     * @throws RequiredFileNotFoundException     Throws if file cannot be read / written too.
      */
-    public void writePlayerData(PlayerData player, PlayerLocationData playerLocation) throws IOException {
+    public void writePlayerData(PlayerData player, PlayerLocationData playerLocation) throws RequiredFileNotFoundException {
         try (RandomAccessFile raf = new RandomAccessFile(path.getFolderPath(), "rw")) {
             raf.seek(playerLocation.getRawDataPositionStart());
             raf.writeUTF(player.getUserName());
@@ -41,6 +45,10 @@ public class PlayerDataHistory extends PlayerHistoryTemplate {
             totalEntries++;
             raf.seek(0);
             raf.writeInt(totalEntries);
+        } catch (SecurityException e) {
+            throw new RequiredFileAccessDeniedException(path.getFolderPath(), e);
+        } catch (IOException e) {
+            throw new RequiredFileNotFoundException(path.getFolderPath(), e);
         }
     }
 
@@ -49,9 +57,10 @@ public class PlayerDataHistory extends PlayerHistoryTemplate {
      *
      * @param player New player to be added to .dat file.
      * @return Returns {@link PlayerLocationData} containing start and end point of players data in .dat file.
-     * @throws IOException Throws if file cannot be read / written too.
+     * @throws RequiredFileAccessDeniedException SecurityException if access to read or write is denied by a security manager.
+     * @throws RequiredFileNotFoundException     Throws if file cannot be read / written too.
      */
-    public PlayerLocationData writePlayerData(PlayerData player) throws IOException {
+    public PlayerLocationData writePlayerData(PlayerData player) throws RequiredFileNotFoundException {
         PlayerLocationData playerLocation = new PlayerLocationData(player.getUserName());
         try (RandomAccessFile raf = new RandomAccessFile(path.getFolderPath(), "rw")) {
             raf.seek(raf.length());
@@ -63,6 +72,10 @@ public class PlayerDataHistory extends PlayerHistoryTemplate {
             }
             playerLocation.setRawDataPositionEnd(raf.getFilePointer());
             return playerLocation;
+        } catch (SecurityException e) {
+            throw new RequiredFileAccessDeniedException(path.getFolderPath(), e);
+        } catch (IOException e) {
+            throw new RequiredFileNotFoundException(path.getFolderPath(), e);
         }
     }
 
@@ -71,10 +84,12 @@ public class PlayerDataHistory extends PlayerHistoryTemplate {
      *
      * @param playerLocation To be read from .dat file.
      * @return Returns {@code PlayerData} if located. Returns {@code Null} if player cannot be located.
-     * @throws IOException Throws if file cannot be read / written too.
+     *
+     * @throws RequiredFileAccessDeniedException SecurityException if access to read or write is denied by a security manager.
+     * @throws RequiredFileNotFoundException Throws if file cannot be read / written too.
      */
-    public PlayerData readPlayerData(PlayerLocationData playerLocation) throws IOException {
-        PlayerData player = null;
+    public PlayerData readPlayerData(PlayerLocationData playerLocation) throws RequiredFileNotFoundException {
+        PlayerData player;
         try (RandomAccessFile raf = new RandomAccessFile(path.getFolderPath(), "rw")) {
             raf.seek(playerLocation.getRawDataPositionStart());
             String userName = raf.readUTF();
@@ -89,6 +104,11 @@ public class PlayerDataHistory extends PlayerHistoryTemplate {
                 playerVariables.offer(raf.readInt());
             }
             player.applyVariableList();
+        }
+        catch (SecurityException e) {
+            throw new RequiredFileAccessDeniedException(path.getFolderPath(), e);
+        } catch (IOException e) {
+            throw new RequiredFileNotFoundException(path.getFolderPath(), e);
         }
         return player;
     }

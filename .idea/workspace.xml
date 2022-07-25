@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5920b4c-5a8a-4778-9136-3f3d59a59aff" name="Changes" comment="Re-organized packages for consistent naming. &#10;&#10;-Pop up window with progress bar may need multithreading processing. Until then - will use alert box with dialog for what files completed.  &#10;&#10;Stackoverflow on multithreading and progress bar - https://stackoverflow.com/questions/34773577/javafx-show-progressindicator-while-loading">
+    <list default="true" id="a5920b4c-5a8a-4778-9136-3f3d59a59aff" name="Changes" comment="*Main changes*&#10;Updates to MenuFileController - now displaying pop up message when file processing is completed. Includes list of completed, duplicate and failed files. &#10;&#10;Changed Data Manager's game processor to return boolean if the file processed correctly. &#10;&#10;Removed default constructor from GameFileData as it wasn't needed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/DataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/menu_bar/MenuFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/menu_bar/MenuFileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/window_controllers/menu_bar/MenuFile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/window_controllers/menu_bar/MenuFile.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="adding_progress_barr" />
+        <entry key="$PROJECT_DIR$" value="adding_progress_bar" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -133,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658719932328</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="*Main changes*&#10;Updates to MenuFileController - now displaying pop up message when file processing is completed. Includes list of completed, duplicate and failed files. &#10;&#10;Changed Data Manager's game processor to return boolean if the file processed correctly. &#10;&#10;Removed default constructor from GameFileData as it wasn't needed.">
+      <created>1658726066351</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1658726066351</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,7 +150,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/adding_progress_barr" />
+                        <option value="HEAD" />
                       </list>
                     </value>
                   </entry>
@@ -162,6 +165,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Re-organized packages for consistent naming. &#10;&#10;-Pop up window with progress bar may need multithreading processing. Until then - will use alert box with dialog for what files completed.  &#10;&#10;Stackoverflow on multithreading and progress bar - https://stackoverflow.com/questions/34773577/javafx-show-progressindicator-while-loading" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-organized packages for consistent naming. &#10;&#10;-Pop up window with progress bar may need multithreading processing. Until then - will use alert box with dialog for what files completed.  &#10;&#10;Stackoverflow on multithreading and progress bar - https://stackoverflow.com/questions/34773577/javafx-show-progressindicator-while-loading" />
+    <MESSAGE value="*Main changes*&#10;Updates to MenuFileController - now displaying pop up message when file processing is completed. Includes list of completed, duplicate and failed files. &#10;&#10;Changed Data Manager's game processor to return boolean if the file processed correctly. &#10;&#10;Removed default constructor from GameFileData as it wasn't needed." />
+    <option name="LAST_COMMIT_MESSAGE" value="*Main changes*&#10;Updates to MenuFileController - now displaying pop up message when file processing is completed. Includes list of completed, duplicate and failed files. &#10;&#10;Changed Data Manager's game processor to return boolean if the file processed correctly. &#10;&#10;Removed default constructor from GameFileData as it wasn't needed." />
   </component>
 </project>
