@@ -5,13 +5,11 @@
 <?import javafx.scene.control.MenuItem?>
 <Menu xmlns="http://javafx.com/javafx/11.0.14-internal"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.poker_player_tracker.view_controllers.menu_controllers.MenuFileController"
+      fx:controller="com.poker_player_tracker.window_controllers.menu_bar.MenuFileController"
       text="_File">
     <Menu text="_Process Files">
-        <MenuItem fx:id="singleFileProcess" onAction="#processOneFile"
-                  text="One File"/>
 
-        <MenuItem fx:id="mulFilesProcess" onAction="#processMulFile"
+        <MenuItem fx:id="mulFilesProcess" onAction="#processFiles"
                   text="Multiple Files"/>
 
         <MenuItem fx:id="folderProcess" onAction="#processFolder"

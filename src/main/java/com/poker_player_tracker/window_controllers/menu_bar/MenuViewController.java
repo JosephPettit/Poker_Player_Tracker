@@ -1,9 +1,9 @@
-package com.poker_player_tracker.view_controllers.menu_controllers;
+package com.poker_player_tracker.window_controllers.menu_bar;
 
 import com.poker_player_tracker.data_IO.DataManager;
 import com.poker_player_tracker.data_IO.player_data.PlayerDisplayData;
 import com.poker_player_tracker.data_IO.player_history.PlayerLocationData;
-import com.poker_player_tracker.view_controllers.MainController;
+import com.poker_player_tracker.window_controllers.MainController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.MenuItem;

@@ -1,4 +1,4 @@
-package com.poker_player_tracker.data_IO.processor;
+package com.poker_player_tracker.data_IO.game_processor;
 
 public enum GameFileKey {
 

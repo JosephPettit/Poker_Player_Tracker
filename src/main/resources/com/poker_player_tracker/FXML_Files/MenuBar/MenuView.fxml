@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.*?>
-
-<Menu mnemonicParsing="false" text="View" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.poker_player_tracker.view_controllers.menu_controllers.MenuViewController">
-
-    <MenuItem fx:id="displayAll" mnemonicParsing="false" onAction="#displayAllPlayers" text="Display All Players" />
-
-</Menu>

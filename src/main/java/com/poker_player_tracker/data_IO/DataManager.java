@@ -3,13 +3,13 @@ package com.poker_player_tracker.data_IO;
 import com.poker_player_tracker.data_IO.game_file_history.FolderPath;
 import com.poker_player_tracker.data_IO.game_file_history.GameFileData;
 import com.poker_player_tracker.data_IO.game_file_history.GameFileLogManager;
+import com.poker_player_tracker.data_IO.game_file_history.PlayerLocationLogManager;
+import com.poker_player_tracker.data_IO.game_processor.GameProcessor;
 import com.poker_player_tracker.data_IO.player_data.PlayerData;
 import com.poker_player_tracker.data_IO.player_data.PlayerDisplayData;
 import com.poker_player_tracker.data_IO.player_history.PlayerDataHistory;
 import com.poker_player_tracker.data_IO.player_history.PlayerDisplayHistory;
 import com.poker_player_tracker.data_IO.player_history.PlayerLocationData;
-import com.poker_player_tracker.data_IO.player_history.PlayerLocationLogManager;
-import com.poker_player_tracker.data_IO.processor.GameProcessor;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,7 +62,7 @@ public class DataManager {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public void processGameFile(File file) throws IOException, ClassNotFoundException {
+    public boolean processGameFile(File file) throws IOException, ClassNotFoundException {
         gameData = new GameProcessor().processFile(file);
         gameLog = new GameFileLogManager();
         if (!gameLog.duplicateLocated(gameData)) {
@@ -70,9 +70,10 @@ public class DataManager {
             gameLog.createGameHistoryFile(gameData);
             gameLog.writeFile();
             mergePlayersWithLocLog(gameData);
+            return true;
         }
         // TODO: add custom exception for null file;
-
+        return false;
     }
 
     private void mergePlayersWithLocLog(GameFileData gameData) throws IOException, ClassNotFoundException {

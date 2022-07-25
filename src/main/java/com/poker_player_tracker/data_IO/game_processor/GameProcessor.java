@@ -1,4 +1,4 @@
-package com.poker_player_tracker.data_IO.processor;
+package com.poker_player_tracker.data_IO.game_processor;
 
 
 import com.poker_player_tracker.data_IO.game_file_history.GameFileData;

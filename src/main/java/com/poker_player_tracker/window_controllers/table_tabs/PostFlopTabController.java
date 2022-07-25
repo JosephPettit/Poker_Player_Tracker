@@ -1,8 +1,8 @@
-package com.poker_player_tracker.view_controllers.table_controllers;
+package com.poker_player_tracker.window_controllers.table_tabs;
 
 
 import com.poker_player_tracker.data_IO.player_data.PlayerDisplayData;
-import com.poker_player_tracker.view_controllers.MainController;
+import com.poker_player_tracker.window_controllers.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;

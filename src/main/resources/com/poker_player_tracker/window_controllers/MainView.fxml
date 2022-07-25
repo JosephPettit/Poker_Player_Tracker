@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="BorderPane" minHeight="400.0" minWidth="750.0" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.poker_player_tracker.view_controllers.MainController">
+<BorderPane fx:id="BorderPane" minHeight="400.0" minWidth="750.0" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.poker_player_tracker.window_controllers.MainController">
     <top>
         <MenuBar fx:id="MenuBar" BorderPane.alignment="CENTER">
-            <fx:include source="MenuBar/MenuFile.fxml" />
-            <fx:include source="MenuBar/MenuView.fxml" />
+            <fx:include source="menu_bar/MenuFile.fxml" />
+            <fx:include source="menu_bar/MenuView.fxml" />
         </MenuBar>
     </top>
     <center>
@@ -37,19 +37,19 @@
             <TabPane prefHeight="330.0" prefWidth="550.0" VBox.vgrow="ALWAYS">
 
                 <Tab closable="false" text="Player Totals">
-                    <fx:include source="TableTabs/PlayerTotalsTab.fxml" />
+                    <fx:include source="table_tabs/PlayerTotalsTab.fxml" />
                 </Tab>
 
                 <Tab closable="false" text="Pre Flop Stats">
-                    <fx:include source="TableTabs/PreFlopTab.fxml" />
+                    <fx:include source="table_tabs/PreFlopTab.fxml" />
                 </Tab>
 
                 <Tab closable="false" text="Post Flop Stats">
-                    <fx:include source="TableTabs/PostFlopTab.fxml" />
+                    <fx:include source="table_tabs/PostFlopTab.fxml" />
                 </Tab>
 
                 <Tab closable="false" text="Winning Stats">
-                    <fx:include source="TableTabs/WinningTab.fxml" />
+                    <fx:include source="table_tabs/WinningTab.fxml" />
                 </Tab>
             </TabPane>
         </VBox>

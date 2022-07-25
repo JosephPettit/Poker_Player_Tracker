@@ -1,4 +1,4 @@
-package com.poker_player_tracker.view_controllers;
+package com.poker_player_tracker.window_controllers;
 
 import com.poker_player_tracker.data_IO.DataManager;
 import com.poker_player_tracker.data_IO.player_data.PlayerDisplayData;
