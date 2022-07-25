@@ -1,7 +1,7 @@
 package com.poker_player_tracker.data_IO.game_processor;
 
 
-import com.poker_player_tracker.data_IO.IncorrectInputFileFormatting;
+import com.poker_player_tracker.data_IO.custom_exceptions.IncorrectInputFileFormattingException;
 import com.poker_player_tracker.data_IO.game_file_history.GameFileData;
 import com.poker_player_tracker.data_IO.player_data.PlayerData;
 
@@ -19,7 +19,7 @@ public class GameProcessor {
      *
      * @param inputFile Name of input file, of type: File
      * @return {@code HashMap <String, PlayerData>}
-     * @throws IncorrectInputFileFormatting throws if game file is not formatted as a Poker Game History File.
+     * @throws IncorrectInputFileFormattingException throws if game file is not formatted as a Poker Game History File.
      */
     public GameFileData processFile(File inputFile) throws IOException {
         playersDataMap = new HashMap<>(18);
@@ -35,13 +35,13 @@ public class GameProcessor {
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile.getAbsoluteFile()))) {
 
             if ((firstLine = reader.readLine()) == null) {
-                throw new IncorrectInputFileFormatting();
+                throw new IncorrectInputFileFormattingException();
             }
             try {
                 gameID = Integer.parseInt(firstLine.substring(firstLine.indexOf(" ") + 1));
             }
             catch(NumberFormatException e){
-                throw new IncorrectInputFileFormatting();
+                throw new IncorrectInputFileFormattingException();
             }
             while ((currentLine = reader.readLine()) != null) {
 
@@ -80,7 +80,7 @@ public class GameProcessor {
             } // end while current line !null
         }
         catch(IOException e){
-            throw new IncorrectInputFileFormatting(inputFile.getName() + " Failed to process correctly", e);
+            throw new IncorrectInputFileFormattingException(inputFile.getName() + " Failed to process correctly", e);
         }
         return new GameFileData(gameID, startingHand, endingHand, playersDataMap);
     } // end of process file

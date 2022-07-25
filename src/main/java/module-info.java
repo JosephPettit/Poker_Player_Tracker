@@ -20,4 +20,6 @@ module com.poker_player_tracker.poker_player_tracker {
 
     exports com.poker_player_tracker.data_IO.player_history;
     opens com.poker_player_tracker.data_IO.player_history to javafx.fxml;
+    exports com.poker_player_tracker.data_IO.custom_exceptions;
+    opens com.poker_player_tracker.data_IO.custom_exceptions to javafx.fxml;
 }

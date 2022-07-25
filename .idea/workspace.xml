@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5920b4c-5a8a-4778-9136-3f3d59a59aff" name="Changes" comment="*Main changes*&#10;Updates to MenuFileController - now displaying pop up message when file processing is completed. Includes list of completed, duplicate and failed files. &#10;&#10;Changed Data Manager's game processor to return boolean if the file processed correctly. &#10;&#10;Removed default constructor from GameFileData as it wasn't needed.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a5920b4c-5a8a-4778-9136-3f3d59a59aff" name="Changes" comment="*Main changes*&#10;Updates to MenuFileController - now displaying pop up message when file processing is completed. Includes list of completed, duplicate and failed files. &#10;&#10;Changed Data Manager's game processor to return boolean if the file processed correctly. &#10;&#10;Removed default constructor from GameFileData as it wasn't needed." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +26,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -40,19 +39,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_directory_selection": "C:/Users/Joe/Desktop/Poker_Player_Tracker/src/main/java/com/poker_player_tracker/window_controllers/menu_bar",
-    "last_opened_file_path": "C:/Users/Joe/Desktop/Poker_Player_Tracker/src/main/resources/com/poker_player_tracker/FXML_Files",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.36666667",
-    "vcs.patch.path": "C:/Users/Joe/Desktop"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/Joe/Desktop/Poker_Player_Tracker/src/main/java/com/poker_player_tracker/window_controllers/menu_bar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Joe/Desktop/Poker_Player_Tracker/src/main/resources/com/poker_player_tracker/FXML_Files&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.36666667&quot;,
+    &quot;vcs.patch.path&quot;: &quot;C:/Users/Joe/Desktop&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Joe\Desktop\Poker_Player_Tracker\src\main\resources\com\poker_player_tracker\FXML_Files" />
@@ -94,8 +93,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Launcher" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.Launcher" />
       </list>
     </recent_temporary>
   </component>
@@ -150,7 +152,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="HEAD" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>

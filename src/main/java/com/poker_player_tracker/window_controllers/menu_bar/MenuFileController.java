@@ -1,18 +1,13 @@
 package com.poker_player_tracker.window_controllers.menu_bar;
 
 import com.poker_player_tracker.data_IO.DataManager;
-import com.poker_player_tracker.data_IO.IncorrectInputFileFormatting;
-import com.poker_player_tracker.data_IO.RequiredFileAccessDeniedException;
-import com.poker_player_tracker.data_IO.RequiredFileNotFoundException;
+import com.poker_player_tracker.data_IO.custom_exceptions.IncorrectInputFileFormattingException;
+import com.poker_player_tracker.data_IO.custom_exceptions.RequiredFileAccessDeniedException;
+import com.poker_player_tracker.data_IO.custom_exceptions.RequiredFileNotFoundException;
 import com.poker_player_tracker.window_controllers.AlertWindowController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -74,7 +69,7 @@ public class MenuFileController {
                     duplicateFiles.offer(currentFile.getName());
                 }
 
-            } catch (IncorrectInputFileFormatting | NullPointerException e) {
+            } catch (IncorrectInputFileFormattingException | NullPointerException e) {
                 failedFiles.offer(currentFile.getName());
                 alert.displayError(e, "Input File Reading Exception (not a Poker History File)");
             } catch (RequiredFileNotFoundException e) {

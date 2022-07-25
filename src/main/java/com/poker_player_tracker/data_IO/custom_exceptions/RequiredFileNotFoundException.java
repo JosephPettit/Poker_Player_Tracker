@@ -1,4 +1,4 @@
-package com.poker_player_tracker.data_IO;
+package com.poker_player_tracker.data_IO.custom_exceptions;
 
 import java.io.IOException;
 

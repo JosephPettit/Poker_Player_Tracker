@@ -1,7 +1,7 @@
 package com.poker_player_tracker.data_IO.game_file_history;
 
-import com.poker_player_tracker.data_IO.RequiredFileAccessDeniedException;
-import com.poker_player_tracker.data_IO.RequiredFileNotFoundException;
+import com.poker_player_tracker.data_IO.custom_exceptions.RequiredFileAccessDeniedException;
+import com.poker_player_tracker.data_IO.custom_exceptions.RequiredFileNotFoundException;
 
 import java.io.*;
 import java.util.HashSet;

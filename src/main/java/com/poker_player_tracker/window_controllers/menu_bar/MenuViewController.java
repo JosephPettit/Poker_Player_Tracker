@@ -1,7 +1,6 @@
 package com.poker_player_tracker.window_controllers.menu_bar;
 
 import com.poker_player_tracker.data_IO.DataManager;
-import com.poker_player_tracker.data_IO.RequiredFileNotFoundException;
 import com.poker_player_tracker.data_IO.player_data.PlayerDisplayData;
 import com.poker_player_tracker.data_IO.player_history.PlayerLocationData;
 import com.poker_player_tracker.window_controllers.AlertWindowController;

@@ -1,5 +1,7 @@
 package com.poker_player_tracker.data_IO;
 
+import com.poker_player_tracker.data_IO.custom_exceptions.RequiredFileAccessDeniedException;
+import com.poker_player_tracker.data_IO.custom_exceptions.RequiredFileNotFoundException;
 import com.poker_player_tracker.data_IO.game_file_history.FolderPath;
 import com.poker_player_tracker.data_IO.game_file_history.GameFileData;
 import com.poker_player_tracker.data_IO.game_file_history.GameFileLogManager;
