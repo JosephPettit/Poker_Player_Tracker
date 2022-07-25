@@ -4,27 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5920b4c-5a8a-4778-9136-3f3d59a59aff" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/menu_bar/UploadWindowController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/window_controllers/menu_bar/UploadWindow.fxml" afterDir="false" />
+    <list default="true" id="a5920b4c-5a8a-4778-9136-3f3d59a59aff" name="Changes" comment="Re-organized packages for consistent naming. &#10;&#10;-Pop up window with progress bar may need multithreading processing. Until then - will use alert box with dialog for what files completed.  &#10;&#10;Stackoverflow on multithreading and progress bar - https://stackoverflow.com/questions/34773577/javafx-show-progressindicator-while-loading">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/menu_controllers/MenuFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/menu_bar/MenuFileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/menu_controllers/MenuViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/menu_bar/MenuViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/table_controllers/PlayerTotalsTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/table_tabs/PlayerTotalsTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/table_controllers/PostFlopTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/table_tabs/PostFlopTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/table_controllers/PreFlopTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/table_tabs/PreFlopTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/view_controllers/table_controllers/WinningTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/table_tabs/WinningTabController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/window_controllers/MainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/MenuBar/MenuFile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/window_controllers/menu_bar/MenuFile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/MenuBar/MenuView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/window_controllers/menu_bar/MenuView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/TableTabs/PlayerTotalsTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/window_controllers/table_tabs/PlayerTotalsTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/TableTabs/PostFlopTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/window_controllers/table_tabs/PostFlopTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/TableTabs/PreFlopTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/window_controllers/table_tabs/PreFlopTab.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/FXML_Files/TableTabs/WinningTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/window_controllers/table_tabs/WinningTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/data_IO/DataManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/menu_bar/MenuFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/menu_bar/MenuFileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/poker_player_tracker/window_controllers/menu_bar/UploadWindowController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/poker_player_tracker/window_controllers/menu_bar/UploadWindow.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +53,8 @@
     "last_opened_file_path": "C:/Users/Joe/Desktop/Poker_Player_Tracker/src/main/resources/com/poker_player_tracker/FXML_Files",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.36666667"
+    "project.structure.side.proportion": "0.36666667",
+    "vcs.patch.path": "C:/Users/Joe/Desktop"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -133,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658552142510</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Re-organized packages for consistent naming. &#10;&#10;-Pop up window with progress bar may need multithreading processing. Until then - will use alert box with dialog for what files completed.  &#10;&#10;Stackoverflow on multithreading and progress bar - https://stackoverflow.com/questions/34773577/javafx-show-progressindicator-while-loading">
+      <created>1658719361581</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1658719361581</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -161,6 +154,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Re-organized packages for consistent naming. &#10;&#10;-Pop up window with progress bar may need multithreading processing. Until then - will use alert box with dialog for what files completed.  &#10;&#10;Stackoverflow on multithreading and progress bar - https://stackoverflow.com/questions/34773577/javafx-show-progressindicator-while-loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-organized packages for consistent naming. &#10;&#10;-Pop up window with progress bar may need multithreading processing. Until then - will use alert box with dialog for what files completed.  &#10;&#10;Stackoverflow on multithreading and progress bar - https://stackoverflow.com/questions/34773577/javafx-show-progressindicator-while-loading" />
   </component>
 </project>

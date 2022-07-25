@@ -4,7 +4,6 @@ import com.poker_player_tracker.data_IO.DataManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -19,7 +18,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.net.URL;
 import java.util.*;
 
 
@@ -93,8 +91,6 @@ public class MenuFileController {
     private void actionUploadWindow (ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UploadWindow.fxml"));
         Parent root = loader.load();
-        UploadWindowController uwc = loader.getController();
-        uwc.setLbFileName();
 
 //        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("UploadWindow.fxml")));
         Stage stage = new Stage();
