@@ -45,14 +45,18 @@ public class MainController implements Initializable {
 
     @FXML
     protected void onSearchButtonClick(ActionEvent event) {
-        HashMap<String, PlayerLocationData> playerData;
+        HashMap<String, PlayerLocationData> playerData = null;
         try {
             playerData  = new DataManager().getPlayerHistory();
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             playerData = new HashMap<>();
+        }
+        catch(ClassNotFoundException e){
+            new AlertWindowController().displayError(e, "Internal Error has occurred. Unable to locate internal class file");
         }
         notLocatedLabel.setVisible(false);
         String playerName = playerTextField.getText().trim().toLowerCase();
+        assert playerData != null;
         if (playerData.containsKey(playerName)) {
             try {
                 playerList.add(new DataManager().getDisplayPlayer(playerData.get(playerName)));

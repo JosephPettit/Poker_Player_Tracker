@@ -1,13 +1,11 @@
 package com.poker_player_tracker.data_IO.game_processor;
 
 
+import com.poker_player_tracker.data_IO.IncorrectInputFileFormatting;
 import com.poker_player_tracker.data_IO.game_file_history.GameFileData;
 import com.poker_player_tracker.data_IO.player_data.PlayerData;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 
 public class GameProcessor {
@@ -21,8 +19,9 @@ public class GameProcessor {
      *
      * @param inputFile Name of input file, of type: File
      * @return {@code HashMap <String, PlayerData>}
+     * @throws IncorrectInputFileFormatting throws if game file is not formatted as a Poker Game History File.
      */
-    public GameFileData processFile(File inputFile) throws IOException, NumberFormatException {
+    public GameFileData processFile(File inputFile) throws IOException {
         playersDataMap = new HashMap<>(18);
         String[] currentTableArr = new String[9];
         String currentLine;
@@ -36,12 +35,14 @@ public class GameProcessor {
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile.getAbsoluteFile()))) {
 
             if ((firstLine = reader.readLine()) == null) {
-                throw new IOException("Specified game file is not formatted correctly. " +
-                        "\nEnsure you are loading a ClubWPT Poker Hand File ");
+                throw new IncorrectInputFileFormatting();
             }
-
-            gameID = Integer.parseInt(firstLine.substring(firstLine.indexOf(" ") + 1));
-
+            try {
+                gameID = Integer.parseInt(firstLine.substring(firstLine.indexOf(" ") + 1));
+            }
+            catch(NumberFormatException e){
+                throw new IncorrectInputFileFormatting();
+            }
             while ((currentLine = reader.readLine()) != null) {
 
                 if (currentLine.contains(GameFileKey.STARTS.toString())) {
@@ -77,8 +78,10 @@ public class GameProcessor {
                     } // end Game Key for loop
                 } // end if !bypass condition, and game started
             } // end while current line !null
-        } // end try
-
+        }
+        catch(IOException e){
+            throw new IncorrectInputFileFormatting(inputFile.getName() + " Failed to process correctly", e);
+        }
         return new GameFileData(gameID, startingHand, endingHand, playersDataMap);
     } // end of process file
 

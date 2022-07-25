@@ -1,6 +1,10 @@
 package com.poker_player_tracker.window_controllers.menu_bar;
 
 import com.poker_player_tracker.data_IO.DataManager;
+import com.poker_player_tracker.data_IO.IncorrectInputFileFormatting;
+import com.poker_player_tracker.data_IO.RequiredFileAccessDeniedException;
+import com.poker_player_tracker.data_IO.RequiredFileNotFoundException;
+import com.poker_player_tracker.window_controllers.AlertWindowController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -57,6 +61,7 @@ public class MenuFileController {
         Queue<String> duplicateFiles = new LinkedList<>();
         Queue<String> failedFiles = new LinkedList<>();
         dataManager = new DataManager();
+        AlertWindowController alert = new AlertWindowController();
         int completed = 0;
         int starting = fileList.size();
         while (!fileQueue.isEmpty()) {
@@ -69,100 +74,103 @@ public class MenuFileController {
                     duplicateFiles.offer(currentFile.getName());
                 }
 
-            } catch (NumberFormatException | StringIndexOutOfBoundsException | NullPointerException e) {
+            } catch (IncorrectInputFileFormatting | NullPointerException e) {
                 failedFiles.offer(currentFile.getName());
-                displayError(e, "Input File Reading Exception (not a Poker History File)");
-            } catch (IOException e) {
+                alert.displayError(e, "Input File Reading Exception (not a Poker History File)");
+            } catch (RequiredFileNotFoundException e) {
                 failedFiles.offer(currentFile.getName());
-                displayError(e, "File IO Exception");
+                alert.displayError(e, "File IO Exception: Unable to read, write, or create necessary game files.");
+            }catch (RequiredFileAccessDeniedException e) {
+                    failedFiles.offer(currentFile.getName());
+                    alert.displayError(e, "File IO Exception: Access to a required file was denied by the System's security manager.");
             } catch (Exception e) {
                 failedFiles.offer(currentFile.getName());
-                displayError(e, "General Exception");
+                alert.displayError(e, "General Exception");
             }
         }
-        displayCompleted(starting, completed, completedFiles, duplicateFiles, failedFiles);
+        alert.displayCompleted(starting, completed, completedFiles, duplicateFiles, failedFiles);
     }
 
-    private void displayCompleted(int starting, int completed, Queue<String> completedFiles, Queue<String> duplicateFiles, Queue<String> failedFiles) {
-        StringBuilder sb = new StringBuilder();
-        String completedText;
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("File Upload Completed");
-
-        if (starting == completed) {
-            alert.setHeaderText("I have some great news!");
-            alert.setContentText(completed + " out of " + starting + " files below have been processed successfully");
-            addFilesToLog(sb, "Successfully processed files: \n\n", completedFiles);
-
-        } else if (starting > completed && completed != 0) {
-            alert.setHeaderText("Well, I have some good news and some bad news...");
-            alert.setContentText("Only " + completed + " out of " + starting + ", the files selected successfully");
-
-            if (!completedFiles.isEmpty()) {
-                addFilesToLog(sb, "Successfully processed files: \n\n", completedFiles);
-            }
-            if (!duplicateFiles.isEmpty()) {
-                addFilesToLog(sb, "\nDuplicated Skipped files: \n\n", duplicateFiles);
-            }
-            if (!failedFiles.isEmpty()) {
-                addFilesToLog(sb, "\nFailed files: \n\n", failedFiles);
-            }
-
-        } else {
-            alert.setHeaderText("Bad News....");
-            alert.setContentText("None of the selected files processed successfully.");
-
-            if (!duplicateFiles.isEmpty()) {
-                addFilesToLog(sb, "\nDuplicated Skipped files: \n\n", duplicateFiles);
-            }
-            if (!failedFiles.isEmpty()) {
-                addFilesToLog(sb, "\nFailed files: \n\n", failedFiles);
-            }
-        }
-
-        completedText = sb.toString();
-        displayLog("File processing log is below:", completedText, alert);
-
-    }
-
-    private void addFilesToLog(StringBuilder sb, String str, Queue<String> fileQueue) {
-        sb.append(str);
-        for (String fileName : fileQueue)
-            sb.append(fileName).append("\n");
-    }
-
-    private void displayError(Exception e, String errorType) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Exception Dialog");
-        alert.setHeaderText("An un-recoverable " + errorType + " error has accord");
-        alert.setContentText("If you can debug the issue \nThe stacktrace is below. \n\n");
-
-        // Create expandable Exception.
-        StringWriter sw = new StringWriter();
-        PrintWriter pw = new PrintWriter(sw);
-        e.printStackTrace(pw);
-        String exceptionText = sw.toString();
-        displayLog("The exception stacktrace is:", exceptionText, alert);
-    }
-
-    private void displayLog(String s, String messageText, Alert alert) {
-        Label label = new Label(s);
-        TextArea textArea = new TextArea(messageText);
-        textArea.setEditable(false);
-        textArea.setWrapText(true);
-        textArea.setMaxWidth(Double.MAX_VALUE);
-        textArea.setMaxHeight(Double.MAX_VALUE);
-        GridPane.setVgrow(textArea, Priority.ALWAYS);
-        GridPane.setHgrow(textArea, Priority.ALWAYS);
-        GridPane expContent = new GridPane();
-        expContent.setMaxWidth(Double.MAX_VALUE);
-        expContent.add(label, 0, 0);
-        expContent.add(textArea, 0, 1);
-
-        // Set expandable Exception into the dialog pane.
-        alert.getDialogPane().setExpandableContent(expContent);
-        alert.showAndWait();
-    }
+//    private void displayCompleted(int starting, int completed, Queue<String> completedFiles, Queue<String> duplicateFiles, Queue<String> failedFiles) {
+//        StringBuilder sb = new StringBuilder();
+//        String completedText;
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("File Upload Completed");
+//
+//        if (starting == completed) {
+//            alert.setHeaderText("I have some great news!");
+//            alert.setContentText(completed + " out of " + starting + " files below have been processed successfully");
+//            addFilesToLog(sb, "Successfully processed files: \n\n", completedFiles);
+//
+//        } else if (starting > completed && completed != 0) {
+//            alert.setHeaderText("Well, I have some good news and some bad news...");
+//            alert.setContentText("Only " + completed + " out of " + starting + ", the files selected successfully");
+//
+//            if (!completedFiles.isEmpty()) {
+//                addFilesToLog(sb, "Successfully processed files: \n\n", completedFiles);
+//            }
+//            if (!duplicateFiles.isEmpty()) {
+//                addFilesToLog(sb, "\nDuplicated Skipped files: \n\n", duplicateFiles);
+//            }
+//            if (!failedFiles.isEmpty()) {
+//                addFilesToLog(sb, "\nFailed files: \n\n", failedFiles);
+//            }
+//
+//        } else {
+//            alert.setHeaderText("Bad News....");
+//            alert.setContentText("None of the selected files processed successfully.");
+//
+//            if (!duplicateFiles.isEmpty()) {
+//                addFilesToLog(sb, "\nDuplicated Skipped files: \n\n", duplicateFiles);
+//            }
+//            if (!failedFiles.isEmpty()) {
+//                addFilesToLog(sb, "\nFailed files: \n\n", failedFiles);
+//            }
+//        }
+//
+//        completedText = sb.toString();
+//        displayLog("File processing log is below:", completedText, alert);
+//
+//    }
+//
+//    private void addFilesToLog(StringBuilder sb, String str, Queue<String> fileQueue) {
+//        sb.append(str);
+//        for (String fileName : fileQueue)
+//            sb.append(fileName).append("\n");
+//    }
+//
+//    private void displayError(Exception e, String errorType) {
+//        Alert alert = new Alert(Alert.AlertType.ERROR);
+//        alert.setTitle("Exception Dialog");
+//        alert.setHeaderText("An un-recoverable " + errorType + " error has accord");
+//        alert.setContentText("If you're feeling up-to the challenge, the stacktrace is below. \n\n");
+//
+//        // Create expandable Exception.
+//        StringWriter sw = new StringWriter();
+//        PrintWriter pw = new PrintWriter(sw);
+//        e.printStackTrace(pw);
+//        String exceptionText = sw.toString();
+//        displayLog("The exception stacktrace is:", exceptionText, alert);
+//    }
+//
+//    private void displayLog(String s, String messageText, Alert alert) {
+//        Label label = new Label(s);
+//        TextArea textArea = new TextArea(messageText);
+//        textArea.setEditable(false);
+//        textArea.setWrapText(true);
+//        textArea.setMaxWidth(Double.MAX_VALUE);
+//        textArea.setMaxHeight(Double.MAX_VALUE);
+//        GridPane.setVgrow(textArea, Priority.ALWAYS);
+//        GridPane.setHgrow(textArea, Priority.ALWAYS);
+//        GridPane expContent = new GridPane();
+//        expContent.setMaxWidth(Double.MAX_VALUE);
+//        expContent.add(label, 0, 0);
+//        expContent.add(textArea, 0, 1);
+//
+//        // Set expandable Exception into the dialog pane.
+//        alert.getDialogPane().setExpandableContent(expContent);
+//        alert.showAndWait();
+//    }
 
     @FXML
     private void closeApplication(ActionEvent event) {
