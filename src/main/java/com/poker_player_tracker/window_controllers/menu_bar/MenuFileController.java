@@ -3,9 +3,6 @@ package com.poker_player_tracker.window_controllers.menu_bar;
 import com.poker_player_tracker.data_IO.DataManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -14,12 +11,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.*;
-
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Queue;
 
 
 public class MenuFileController {
@@ -28,96 +26,128 @@ public class MenuFileController {
     private MenuItem folderProcess;
     @FXML
     private MenuItem mulFilesProcess;
+    private DataManager dataManager;
+
+
     @FXML
-    private MenuItem singleFileProcess;
-
-
-    public void processOneFile(ActionEvent event) throws IOException {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Upload Game File");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PokerHistory File (.txt)", "*.txt"));
-
-        File file = fileChooser.showOpenDialog(new Stage());
-        actionUploadWindow(event);
-        if (file != null) {
-            fileChooser.setInitialDirectory(file.getParentFile()); // saves the directory for next time.
-            gameFileToProcess(file);
-        }
-    }
-
-    public void processMulFile(ActionEvent event) {
+    private void processFiles(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Upload Game Files");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Poker History File (.txt)", "*.txt"));
         List<File> fileList = fileChooser.showOpenMultipleDialog(new Stage());
-        if(fileList != null)
+        if (fileList != null)
             gameFileToProcess(fileList);
     }
 
-    public void processFolder(ActionEvent event) {
+    @FXML
+    private void processFolder(ActionEvent event) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Upload Game File Directory");
         FileFilter fileFilter = pathname -> pathname.getName().startsWith("Poker Hand History");
         File folder = directoryChooser.showDialog(new Stage());
-        if(folder != null) {
+        if (folder != null) {
             List<File> fileList = List.of(Objects.requireNonNull(folder.listFiles(fileFilter)));
             gameFileToProcess(fileList);
         }
     }
 
-    private void gameFileToProcess(File file) {
-        try {
-            new DataManager().processGameFile(file);
-        }
-        catch (NumberFormatException | StringIndexOutOfBoundsException | NullPointerException e){
-            displayError(e, "Input File Reading Exception (not a Poker History File)");
-        }
-        catch(IOException e) {
-            displayError(e, "File IO Exception");
-        }
-        catch(Exception e){
-            displayError(e, "General Exception");
-        }
-    }
-
     private void gameFileToProcess(List<File> fileList) {
         Queue<File> fileQueue = new LinkedList<>(fileList);
-        while(!fileQueue.isEmpty()){
-            gameFileToProcess(fileQueue.poll());
+        Queue<String> completedFiles = new LinkedList<>();
+        Queue<String> duplicateFiles = new LinkedList<>();
+        Queue<String> failedFiles = new LinkedList<>();
+        dataManager = new DataManager();
+        int completed = 0;
+        int starting = fileList.size();
+        while (!fileQueue.isEmpty()) {
+            File currentFile = fileQueue.poll();
+            try {
+                if (dataManager.processGameFile(currentFile)) {
+                    completed++;
+                    completedFiles.offer(currentFile.getName());
+                } else {
+                    duplicateFiles.offer(currentFile.getName());
+                }
+
+            } catch (NumberFormatException | StringIndexOutOfBoundsException | NullPointerException e) {
+                failedFiles.offer(currentFile.getName());
+                displayError(e, "Input File Reading Exception (not a Poker History File)");
+            } catch (IOException e) {
+                failedFiles.offer(currentFile.getName());
+                displayError(e, "File IO Exception");
+            } catch (Exception e) {
+                failedFiles.offer(currentFile.getName());
+                displayError(e, "General Exception");
+            }
         }
+        displayCompleted(starting, completed, completedFiles, duplicateFiles, failedFiles);
     }
 
-    @FXML
-    private void actionUploadWindow (ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("UploadWindow.fxml"));
-        Parent root = loader.load();
+    private void displayCompleted(int starting, int completed, Queue<String> completedFiles, Queue<String> duplicateFiles, Queue<String> failedFiles) {
+        StringBuilder sb = new StringBuilder();
+        String completedText;
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("File Upload Completed");
 
-//        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("UploadWindow.fxml")));
-        Stage stage = new Stage();
-        stage.setTitle("Uploading Files!");
-        stage.setScene(new Scene(root));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        if (starting == completed) {
+            alert.setHeaderText("I have some great news!");
+            alert.setContentText(completed + " out of " + starting + " files below have been processed successfully");
+            addFilesToLog(sb, "Successfully processed files: \n\n", completedFiles);
+
+        } else if (starting > completed && completed != 0) {
+            alert.setHeaderText("Well, I have some good news and some bad news...");
+            alert.setContentText("Only " + completed + " out of " + starting + ", the files selected successfully");
+
+            if (!completedFiles.isEmpty()) {
+                addFilesToLog(sb, "Successfully processed files: \n\n", completedFiles);
+            }
+            if (!duplicateFiles.isEmpty()) {
+                addFilesToLog(sb, "\nDuplicated Skipped files: \n\n", duplicateFiles);
+            }
+            if (!failedFiles.isEmpty()) {
+                addFilesToLog(sb, "\nFailed files: \n\n", failedFiles);
+            }
+
+        } else {
+            alert.setHeaderText("Bad News....");
+            alert.setContentText("None of the selected files processed successfully.");
+
+            if (!duplicateFiles.isEmpty()) {
+                addFilesToLog(sb, "\nDuplicated Skipped files: \n\n", duplicateFiles);
+            }
+            if (!failedFiles.isEmpty()) {
+                addFilesToLog(sb, "\nFailed files: \n\n", failedFiles);
+            }
+        }
+
+        completedText = sb.toString();
+        displayLog("File processing log is below:", completedText, alert);
+
     }
 
-    @FXML
-    private void closeApplication(ActionEvent event) {
-        System.exit(0);
+    private void addFilesToLog(StringBuilder sb, String str, Queue<String> fileQueue) {
+        sb.append(str);
+        for (String fileName : fileQueue)
+            sb.append(fileName).append("\n");
     }
 
-    private void displayError(Exception e, String errorType){
+    private void displayError(Exception e, String errorType) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Exception Dialog");
-        alert.setHeaderText("An un-recoverable "+ errorType +" error has accord");
-        alert.setContentText("If you are feeling brave enough to debug. \nThe stacktrace is below. \n\n");
+        alert.setHeaderText("An un-recoverable " + errorType + " error has accord");
+        alert.setContentText("If you can debug the issue \nThe stacktrace is below. \n\n");
 
         // Create expandable Exception.
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         e.printStackTrace(pw);
         String exceptionText = sw.toString();
-        Label label = new Label("The exception stacktrace is:");
-        TextArea textArea = new TextArea(exceptionText);
+        displayLog("The exception stacktrace is:", exceptionText, alert);
+    }
+
+    private void displayLog(String s, String messageText, Alert alert) {
+        Label label = new Label(s);
+        TextArea textArea = new TextArea(messageText);
         textArea.setEditable(false);
         textArea.setWrapText(true);
         textArea.setMaxWidth(Double.MAX_VALUE);
@@ -134,7 +164,8 @@ public class MenuFileController {
         alert.showAndWait();
     }
 
-
-
-
+    @FXML
+    private void closeApplication(ActionEvent event) {
+        System.exit(0);
+    }
 }

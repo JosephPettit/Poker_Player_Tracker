@@ -17,8 +17,7 @@ module com.poker_player_tracker.poker_player_tracker {
     opens com.poker_player_tracker.data_IO to javafx.fxml;
     exports com.poker_player_tracker.data_IO.game_file_history;
     opens com.poker_player_tracker.data_IO.game_file_history to javafx.fxml;
-    exports com.poker_player_tracker.data_IO.processor;
-    opens com.poker_player_tracker.data_IO.processor to javafx.fxml;
+
     exports com.poker_player_tracker.data_IO.player_history;
     opens com.poker_player_tracker.data_IO.player_history to javafx.fxml;
 }

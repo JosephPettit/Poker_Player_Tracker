@@ -62,7 +62,7 @@ public class DataManager {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public void processGameFile(File file) throws IOException, ClassNotFoundException {
+    public boolean processGameFile(File file) throws IOException, ClassNotFoundException {
         gameData = new GameProcessor().processFile(file);
         gameLog = new GameFileLogManager();
         if (!gameLog.duplicateLocated(gameData)) {
@@ -70,9 +70,10 @@ public class DataManager {
             gameLog.createGameHistoryFile(gameData);
             gameLog.writeFile();
             mergePlayersWithLocLog(gameData);
+            return true;
         }
         // TODO: add custom exception for null file;
-
+        return false;
     }
 
     private void mergePlayersWithLocLog(GameFileData gameData) throws IOException, ClassNotFoundException {

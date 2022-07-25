@@ -9,14 +9,7 @@ public class GameFileData implements Serializable {
     private final int gameID;
     private final int startingHand;
     private final int endingHand;
-    private transient HashMap<String, PlayerData> gameMap = new HashMap<>();
-
-    public GameFileData(int gameID, int startingHand) {
-        this.gameID = gameID;
-        this.startingHand = startingHand;
-        this.endingHand = -1;
-        this.gameMap = null;
-    }
+    private transient final HashMap<String, PlayerData> gameMap = new HashMap<>();
 
     public GameFileData(int gameID, int startingHand, int endingHand, HashMap<String, PlayerData> gameMap) {
         this.gameID = gameID;
